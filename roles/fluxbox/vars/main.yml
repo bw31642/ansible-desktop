@@ -1,0 +1,14 @@
+---
+fluxbox_apps:
+    - xserver-xorg-legacy
+    - xinit
+    - libstdc++5
+    - xterm
+    - fluxbox
+    - bbpager
+    - dmenu
+    - clipit
+    - conky
+    - wmctrl
+    - roxterm
+    - rxvt-unicode-256color

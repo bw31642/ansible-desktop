@@ -1,0 +1,9 @@
+- name: deploy dotfiles from git
+  git:
+      repo: "{{ item.user_dot_files_repo }}"
+      dest: "/home/{{ item.user_name }}/.dotfiles"
+  with_items: "{{ user_config }}"
+  when: user_config is defined and
+        item.user_dot_files_repo is defined
+  become_user: "{{ item.user_name }}"
+  notify: mk_links

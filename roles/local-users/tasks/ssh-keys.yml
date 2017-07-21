@@ -1,0 +1,21 @@
+---
+- name: Create .ssh directory
+  file: 
+      path: "/home/{{ item.user_name }}/.ssh"
+      owner: "{{ item.user_name }}"
+      group: "{{ item.user_name }}"
+      mode: "0700"
+      state: "directory"
+  with_items: "{{ user_config }}"
+  when: user_config is defined and
+        item.user_ssh_auth_keys_file is defined
+
+- name: Copy authorized_keys
+  copy: 
+      src: "{{ item.user_ssh_auth_keys_file }}"
+      owner: "{{ item.user_name }}"
+      mode: "0600"
+      dest:  "/home/{{ item.user_name }}/authorized_keys"
+  with_items: "{{ user_config }}"
+  when: user_config is defined and
+        item.user_ssh_auth_keys_file is defined

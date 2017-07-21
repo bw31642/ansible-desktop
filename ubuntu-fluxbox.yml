@@ -1,0 +1,10 @@
+---
+- hosts: all
+  roles:
+      - common
+      - local-users
+      - fluxbox
+      - firefox-esr
+      - java
+      - dotfiles
+      - software-config

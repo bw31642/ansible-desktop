@@ -1,0 +1,15 @@
+---
+- name: add PPA for firefox esr
+  apt_repository:
+    repo: ppa:jonathonf/firefox-esr
+    state: present
+  become: true
+
+- name: install firefox esr
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items: 
+     - firefox-esr
+  become: true
+

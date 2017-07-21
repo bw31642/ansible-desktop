@@ -1,0 +1,5 @@
+- name: install fluxbox and utilities
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ fluxbox_apps }}"

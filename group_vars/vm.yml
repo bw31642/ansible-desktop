@@ -1,0 +1,4 @@
+etc_hosts:
+    - name: mgmt-kn-p1
+      ip: 172.19.40.226
+      alias: 172.19.40.226

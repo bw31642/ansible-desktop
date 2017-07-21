@@ -1,0 +1,32 @@
+- name: create /opt/java
+  file:
+    path: /opt/java
+    state: directory
+  become: true
+
+- name: extract java to /opt/java
+  unarchive:
+    remote_src: yes
+    src: http://wattsy.duckdns.org:8888/files/jre-8u111-linux-i586.tar.gz
+    dest: /opt/java
+  become: true
+
+- name: create firefox plugin path for local users
+  file:
+    path: /home/{{ item.user_name }}/.mozilla/plugins
+    state: directory
+    owner: "{{ item.user_name }}"
+    group: "{{ item.user_name }}"
+  with_items: "{{ user_config }}"
+  when: user_config is defined
+
+- name: create java plugin symlink for local users
+  file:
+    src: /opt/java/jre1.8.0_111/lib/i386/libnpjp2.so
+    dest: /home/{{ item.user_name }}/.mozilla/plugins/libnpjp2.so
+    owner: "{{ item.user_name }}"
+    group: "{{ item.user_name }}"
+    state: link
+  with_items: "{{ user_config }}"
+  when: user_config is defined
+

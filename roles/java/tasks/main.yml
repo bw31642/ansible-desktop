@@ -1,0 +1,8 @@
+# Check if we need to install
+- name: check if java installed
+  stat: 
+    path: /opt/java/jre1.8.0_111/
+  register: jre_path
+
+- include: install_jre.yml
+  when: not jre_path.stat.exists and not force_jre_install

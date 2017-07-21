@@ -1,0 +1,21 @@
+---
+- name: set_perms
+  file:
+      path: "/home/{{ item.user_name }}/.dotfiles"
+      owner: "{{ item.user_name }}"
+      group: "{{ item.user_name }}"
+      recurse: yes
+  with_items: "{{ user_config }}"
+  notify: mk_links
+  when: user_config is defined and
+        item.user_dot_files_repo is defined
+
+- name: mk_links
+  shell: "HOME=/home/{{ item.user_name}} ./mk_links.sh"
+  args: 
+     chdir: "/home/{{ item.user_name }}/.dotfiles/helpers"
+  become_user: "{{ item.user_name }}"
+  with_items: "{{ user_config }} "
+  when: user_config is defined and
+        item.user_dot_files_repo is defined
+     

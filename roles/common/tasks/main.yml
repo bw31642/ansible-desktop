@@ -1,0 +1,2 @@
+---
+- include: "etc_hosts.yml"

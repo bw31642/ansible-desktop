@@ -1,0 +1,39 @@
+---
+
+# User Definitions
+machine_config:
+    - name: "ecx-desktop"
+    - ncpu: 2
+    - memory: 4
+
+local_groups:
+    - local_group_name: "bwatts"
+      local_group_gid: "2000"
+
+local_users_ext:
+    - local_user_name: "bwatts"
+      local_user_gcos: "Brian Watts"
+      local_user_uid: "2000"
+      local_user_group: "bwatts"
+      local_user_passwd: "$6$gxPnXTMb$4Je18w87.IdftVy51oz58bM8/2i5CnakbrH3beprPzUm6w/oA1A21qbUyM.1XEQXWfhhn.2xZZnn0hTG5581R1"
+      local_user_secgrps: [ "adm", "sudo",  "video" ]
+    
+local_users_ssh:
+    - local_user_name: "bwatts"
+      ssh_auth_keys_file: "bwatts.authorized_keys" 
+      ssh_dir: "/home/bwatts/.ssh"
+
+local_users_dotfiles:
+    - local_user_name: "bwatts"
+      dot_files_git_repo: "https://github.com/bw31642/dotfiles.git"
+
+local_users_tarballs:
+    - local_user_name: "bwatts"
+      tar_ball: "http://wattsy.duckdns.org:8888/files/bwatts-home.tar"
+
+conky:
+    - local_user_name: "bwatts"
+      conky_vpn_iface: "utun0"
+      conky_env_name: "ECX"
+      conky_env_iface: "enp0s8"
+

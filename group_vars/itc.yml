@@ -1,0 +1,22 @@
+etc_hosts:
+    - name: p
+      ip: 172.23.69.254
+
+    - name: lab-prov
+      ip: 172.23.69.254
+      alias: vpn-check-address
+
+    - name: lab-hopoff
+      ip: 172.30.156.114
+
+    - name: 172.17.135.142
+      ip: lab-ansible
+
+    - name: lab-content1
+      alias: content
+      ip: 172.17.135.141
+
+    - name: lab-content2
+      ip: 172.17.135.144
+
+

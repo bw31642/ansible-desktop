@@ -1,0 +1,9 @@
+- name: deploy conky .env_vars
+  template: 
+      dest: "/home/{{ item.conky_user_name }}/.env_vars"
+      src: "env_vars.j2"
+      owner: "{{ item.conky_user_name }}"
+      group: "{{ item.conky_user_name }}"
+  with_items: "{{ software_config['conky'] }}"
+  when:  software_config is defined and
+         software_config['conky'] is defined

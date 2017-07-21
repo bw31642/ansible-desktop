@@ -1,0 +1,9 @@
+- name: Extract home tar balls for users
+  unarchive:
+    remote_src: yes
+    src: "{{ item.user_home_tar_ball }}"
+    dest: "/home/{{ item.user_name }}"
+  become_user: "{{ item.user_name }}"
+  with_items: "{{ user_config }}"
+  when: user_config is defined and
+        item.user_home_tar_ball is defined

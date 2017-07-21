@@ -1,0 +1,13 @@
+---
+
+- name: Create Local Users
+  user: 
+      name: "{{ item.user_name }}"
+      comment: "{{ item.user_gcos }}"
+      password: "{{ item.user_crypt_passwd }}"
+      state: "present"
+      groups: "{{ item.user_secgrps | default([]) }}"
+      shell: "/bin/bash"
+  with_items: "{{ user_config }}"
+  when: user_config is defined 
+

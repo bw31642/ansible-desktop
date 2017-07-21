@@ -1,0 +1,11 @@
+
+- name: Add entries to /etc/hosts
+  lineinfile: 
+      dest: "/etc/hosts"
+      regexp: '{{ item.ip }}\s+{{ item.name }}'
+      line: '{{ item.ip }}   {{ item.name }}    {{ item.alias | default(" ") }}'
+      backup: "yes"
+  with_items:
+     "{{ etc_hosts }}"
+  become: true
+  when: etc_hosts is defined
